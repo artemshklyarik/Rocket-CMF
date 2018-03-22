@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     'cc8a56d5385b4433e9523f989cdb0fae' => $baseDir . '/app/config/general.php',
     'e2064fe8e794f989a7911adab15dbc03' => $baseDir . '/app/config/database.php',
     '486da8adaba5ac78a32d0821bf54b5f8' => $vendorDir . '/framework/services.php',

@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "doctrine/orm": "*"
+    },
     "autoload": {
         "psr-4": {
             "Framework\\": "vendor/framework",
