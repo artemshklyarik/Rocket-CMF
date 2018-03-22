@@ -13,6 +13,10 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     );
 
     public static $prefixLengthsPsr4 = array (
+        'L' => 
+        array (
+            'Lib\\' => 4,
+        ),
         'F' => 
         array (
             'Framework\\' => 10,
@@ -24,6 +28,10 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     );
 
     public static $prefixDirsPsr4 = array (
+        'Lib\\' => 
+        array (
+            0 => 'W:\\domains\\RocketCMF\\vendor',
+        ),
         'Framework\\' => 
         array (
             0 => __DIR__ . '/..' . '/framework',
@@ -36,7 +44,15 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
 
     public static $classMap = array (
         'Framework\\Application' => __DIR__ . '/..' . '/framework/Application.php',
+        'Framework\\Config\\Service' => __DIR__ . '/..' . '/framework/Config/Service.php',
+        'Framework\\DB\\Service' => __DIR__ . '/..' . '/framework/DB/Service.php',
         'Framework\\DI' => __DIR__ . '/..' . '/framework/DI.php',
+        'Framework\\FileManager\\Service' => __DIR__ . '/..' . '/framework/FileManager/Service.php',
+        'Framework\\Http\\Service' => __DIR__ . '/..' . '/framework/Http/Service.php',
+        'Framework\\ModuleManager\\Service' => __DIR__ . '/..' . '/framework/ModuleManager/Service.php',
+        'Framework\\Router\\Service' => __DIR__ . '/..' . '/framework/Router/Service.php',
+        'Framework\\Service' => __DIR__ . '/..' . '/framework/Service.php',
+        'Framework\\Session\\Service' => __DIR__ . '/..' . '/framework/Session/Service.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

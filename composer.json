@@ -13,7 +13,9 @@
     "autoload": {
         "psr-4": {
             "Framework\\": "vendor/framework",
+            "Lib\\": "vendor/",
             "Core\\": "vendor/core"
+
         },
         "files": [
             "app/config/general.php",
