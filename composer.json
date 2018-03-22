@@ -17,7 +17,8 @@
         },
         "files": [
             "app/config/general.php",
-            "app/config/database.php"
+            "app/config/database.php",
+            "vendor/framework/services.php"
         ]
     }
 }
