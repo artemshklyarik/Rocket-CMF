@@ -25,4 +25,14 @@ final class Service extends \Framework\Service
     {
         // TODO: Implement finish() method.
     }
+
+    public function getGeneralConfig()
+    {
+        return $this->generalConfig;
+    }
+
+    public function getDatabaseConfig()
+    {
+        return $this->databaseConfig;
+    }
 }

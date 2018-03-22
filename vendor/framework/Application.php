@@ -22,10 +22,6 @@ class Application
         foreach ($services as $key => $service) {
             $di->get($key)->start($di);
         }
-//
-//        echo '<pre>';
-//        var_dump($di);
-//        echo '</pre>';
 
         //finish services
         foreach ($services as $key => $service) {
