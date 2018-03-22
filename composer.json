@@ -1,0 +1,23 @@
+{
+    "name": "ashklyarik/rocket-cmf",
+    "description": "Cms and intenal framework for create dinamically sites. Based on modules.",
+    "type": "CMF",
+    "authors": [
+        {
+            "name": "Artem Shklyarik",
+            "email": "artem-shklyarik@yandex.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "vendor/framework",
+            "Core\\": "vendor/core"
+        },
+        "files": [
+            "app/config/general.php",
+            "app/config/database.php"
+        ]
+    }
+}
