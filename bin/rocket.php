@@ -1,3 +1,3 @@
 <?php
 
-echo 'SUCCESS!';
+echo 'Rocket shell script: SUCCESS!';

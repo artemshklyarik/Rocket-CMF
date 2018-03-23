@@ -20,7 +20,11 @@ final class Service extends \Framework\Service
 
     CONST VAR_FOLDER = 'var/';
 
-    CONST VAR_LOGS_FOLDER = 'var/logs';
+    CONST VAR_LOGS_FOLDER = 'var/logs/';
+
+    CONST CORE_MODULES_FOLDER = 'vendor/core/';
+
+    CONST CUSTOM_MODULES_FOLDER = 'app/modules/';
 
     /**
      * @param DI $di
@@ -66,5 +70,46 @@ final class Service extends \Framework\Service
             default:
                 return false;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getCoreModulesFolder()
+    {
+        return self::CORE_MODULES_FOLDER;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomModulesFolder()
+    {
+        return self::CUSTOM_MODULES_FOLDER;
+    }
+
+    public function scanDir($dir, $files = null, $result = [])
+    {
+        foreach (scandir($dir) as $folderItem) {
+            if ($folderItem == '.' || $folderItem == '..') {
+                continue;
+            }
+
+            if (is_file($dir . $folderItem)) {
+                if ($files && !in_array($folderItem, $files)) {
+                    continue;
+                }
+
+                if (!isset($result[$dir])) {
+                    $result[$dir] = [];
+                }
+
+                $result[$dir][$folderItem] = $dir . $folderItem;
+            } else if (is_dir($dir . $folderItem)) {
+                $result = $this->scanDir($dir . $folderItem . '/', $files, $result);
+            }
+        }
+
+        return $result;
     }
 }
