@@ -13,6 +13,10 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     );
 
     public static $prefixLengthsPsr4 = array (
+        'M' => 
+        array (
+            'Module\\' => 7,
+        ),
         'F' => 
         array (
             'Framework\\' => 10,
@@ -24,6 +28,10 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     );
 
     public static $prefixDirsPsr4 = array (
+        'Module\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/modules',
+        ),
         'Framework\\' => 
         array (
             0 => __DIR__ . '/..' . '/framework',
@@ -35,6 +43,7 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     );
 
     public static $classMap = array (
+        'Core\\Rocket\\Pages\\Controller\\TestController' => __DIR__ . '/..' . '/core/Rocket/Pages/Controller/TestController.php',
         'Framework\\Application' => __DIR__ . '/..' . '/framework/Application.php',
         'Framework\\Config\\Service' => __DIR__ . '/..' . '/framework/Config/Service.php',
         'Framework\\DB\\Service' => __DIR__ . '/..' . '/framework/DB/Service.php',

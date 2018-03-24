@@ -14,7 +14,8 @@
     "autoload": {
         "psr-4": {
             "Framework\\": "vendor/framework",
-            "Core\\": "vendor/core"
+            "Core\\": "vendor/core",
+            "Module\\": "app/modules"
 
         },
         "files": [

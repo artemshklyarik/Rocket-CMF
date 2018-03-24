@@ -8,6 +8,12 @@ final class Service extends \Framework\Service
 {
     private $modules = [];
 
+    private $routes = [];
+
+    private $events = [];
+
+    private $rewrites = [];
+
     public function start(DI $di)
     {
         $configService = $di->get('config');
@@ -26,13 +32,48 @@ final class Service extends \Framework\Service
             }
         }
 
-        echo '<pre>';
-        var_dump($this->modules);
-        echo '</pre>';
+        // initialize routes
+        foreach ($this->modules as $scope => $scopeModules) {
+            foreach ($scopeModules as $moduleName => $configs) {
+                $moduleRoutes = $configs[str_replace('.php', '', $configService::MODULE_ROUTES)];
+
+                foreach ($moduleRoutes as $moduleRoutesScope => $routes) {
+                    if (!isset($this->routes[$moduleRoutesScope])) {
+                        $this->routes[$moduleRoutesScope] = [];
+                    }
+
+                    foreach ($routes as $urlRule => $route) {
+                        $this->routes[$moduleRoutesScope][$urlRule] = $route;
+                    }
+                }
+            }
+        }
+
+        // TODO: initialize events, rewrites
     }
 
     public function finish(DI $di)
     {
         return;
+    }
+
+    public function getModules()
+    {
+        return $this->modules;
+    }
+
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
+
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
+    public function getRewrites()
+    {
+        return $this->rewrites;
     }
 }

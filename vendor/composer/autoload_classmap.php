@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Core\\Rocket\\Pages\\Controller\\TestController' => $vendorDir . '/core/Rocket/Pages/Controller/TestController.php',
     'Framework\\Application' => $vendorDir . '/framework/Application.php',
     'Framework\\Config\\Service' => $vendorDir . '/framework/Config/Service.php',
     'Framework\\DB\\Service' => $vendorDir . '/framework/DB/Service.php',

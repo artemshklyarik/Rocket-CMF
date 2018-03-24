@@ -27,7 +27,7 @@ final class Service extends \Framework\Service
     public function start(DI $di)
     {
         $this->setHost($_SERVER['HTTP_HOST']);
-        $this->setUri(explode('/', $_GET['route']));
+        $this->setUri(array_diff(explode('/', $_GET['route']), array('')));
         $this->setHttps(!empty($_SERVER['HTTPS']) && 'off' !== strtolower($_SERVER['HTTPS']));
     }
 
@@ -85,5 +85,18 @@ final class Service extends \Framework\Service
     public function setUri($uri)
     {
         $this->uri = $uri;
+    }
+
+    public function isAdmin()
+    {
+        $generalConfig = $this->di->get('config')->getGeneralConfig();
+        $adminUrl      = $generalConfig['admin_url'];
+        $uri           = $this->getUri();
+
+        if ($adminUrl == $uri[0]) {
+            return true;
+        }
+
+        return false;
     }
 }
