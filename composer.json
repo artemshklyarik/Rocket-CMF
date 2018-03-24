@@ -9,15 +9,19 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+    },
     "autoload": {
         "psr-4": {
             "Framework\\": "vendor/framework",
-            "Core\\": "vendor/core"
+            "Core\\": "vendor/core",
+            "Module\\": "app/modules"
+
         },
         "files": [
             "app/config/general.php",
-            "app/config/database.php"
+            "app/config/database.php",
+            "vendor/framework/services.php"
         ]
     }
 }

@@ -9,9 +9,14 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     public static $files = array (
         'cc8a56d5385b4433e9523f989cdb0fae' => __DIR__ . '/../..' . '/app/config/general.php',
         'e2064fe8e794f989a7911adab15dbc03' => __DIR__ . '/../..' . '/app/config/database.php',
+        '486da8adaba5ac78a32d0821bf54b5f8' => __DIR__ . '/..' . '/framework/services.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'M' => 
+        array (
+            'Module\\' => 7,
+        ),
         'F' => 
         array (
             'Framework\\' => 10,
@@ -23,6 +28,10 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
     );
 
     public static $prefixDirsPsr4 = array (
+        'Module\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/modules',
+        ),
         'Framework\\' => 
         array (
             0 => __DIR__ . '/..' . '/framework',
@@ -33,11 +42,27 @@ class ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c
         ),
     );
 
+    public static $classMap = array (
+        'Core\\Rocket\\Pages\\Controller\\TestController' => __DIR__ . '/..' . '/core/Rocket/Pages/Controller/TestController.php',
+        'Framework\\Application' => __DIR__ . '/..' . '/framework/Application.php',
+        'Framework\\Config\\Service' => __DIR__ . '/..' . '/framework/Config/Service.php',
+        'Framework\\DB\\Service' => __DIR__ . '/..' . '/framework/DB/Service.php',
+        'Framework\\DI' => __DIR__ . '/..' . '/framework/DI.php',
+        'Framework\\EventManager\\Service' => __DIR__ . '/..' . '/framework/EventManager/Service.php',
+        'Framework\\FileManager\\Service' => __DIR__ . '/..' . '/framework/FileManager/Service.php',
+        'Framework\\Http\\Service' => __DIR__ . '/..' . '/framework/Http/Service.php',
+        'Framework\\ModuleManager\\Service' => __DIR__ . '/..' . '/framework/ModuleManager/Service.php',
+        'Framework\\Router\\Service' => __DIR__ . '/..' . '/framework/Router/Service.php',
+        'Framework\\Service' => __DIR__ . '/..' . '/framework/Service.php',
+        'Framework\\Session\\Service' => __DIR__ . '/..' . '/framework/Session/Service.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit057ec6f2fd454f238518cdd9ee48655c::$classMap;
 
         }, null, ClassLoader::class);
     }

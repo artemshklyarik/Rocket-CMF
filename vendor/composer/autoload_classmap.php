@@ -6,4 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Core\\Rocket\\Pages\\Controller\\TestController' => $vendorDir . '/core/Rocket/Pages/Controller/TestController.php',
+    'Framework\\Application' => $vendorDir . '/framework/Application.php',
+    'Framework\\Config\\Service' => $vendorDir . '/framework/Config/Service.php',
+    'Framework\\DB\\Service' => $vendorDir . '/framework/DB/Service.php',
+    'Framework\\DI' => $vendorDir . '/framework/DI.php',
+    'Framework\\EventManager\\Service' => $vendorDir . '/framework/EventManager/Service.php',
+    'Framework\\FileManager\\Service' => $vendorDir . '/framework/FileManager/Service.php',
+    'Framework\\Http\\Service' => $vendorDir . '/framework/Http/Service.php',
+    'Framework\\ModuleManager\\Service' => $vendorDir . '/framework/ModuleManager/Service.php',
+    'Framework\\Router\\Service' => $vendorDir . '/framework/Router/Service.php',
+    'Framework\\Service' => $vendorDir . '/framework/Service.php',
+    'Framework\\Session\\Service' => $vendorDir . '/framework/Session/Service.php',
 );

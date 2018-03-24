@@ -1,0 +1,24 @@
+{
+  "name": "ashklyarik/rocket-cmf",
+  "description": "Demo module for Rocket CMF.",
+  "type": "Rocket CMF module",
+  "authors": [
+    {
+      "name": "Artem Shklyarik",
+      "email": "artem-shklyarik@yandex.ru"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Rocket\\Pages\\": ""
+    },
+    "files": [
+      "config/config.php",
+      "config/events.php",
+      "config/rewrites.php",
+      "config/routes.php"
+    ]
+  }
+}
