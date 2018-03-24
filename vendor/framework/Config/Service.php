@@ -20,6 +20,10 @@ final class Service extends \Framework\Service
 
     CONST MODULE_ROUTES        = 'routes.php';
 
+    CONST CORE_MODULES_SCOPE   = 'core';
+
+    CONST CUSTOM_MODULES_SCOPE = 'custom';
+
     protected $generalConfig;
 
     protected $databaseConfig;
@@ -63,8 +67,8 @@ final class Service extends \Framework\Service
         $customModulesConfigs = $fileManagerService->scanDir($customModulesFolder, $files);
 
         $modulesConfigs = [
-            'core'   => $coreModulesConfigs,
-            'custom' => $customModulesConfigs
+            self::CORE_MODULES_SCOPE   => $coreModulesConfigs,
+            self::CUSTOM_MODULES_SCOPE => $customModulesConfigs
         ];
 
 
@@ -78,8 +82,48 @@ final class Service extends \Framework\Service
             }
         }
 
-        echo '<pre>';
-        var_dump($modulesConfigs);
-        echo '</pre>';
+        return $modulesConfigs;
+    }
+
+    public function isModuleEnabled($moduleName, $scope = self::CORE_MODULES_SCOPE)
+    {
+        $fileManagerService = $this->di->get('file_manager');
+
+        switch ($scope) {
+            case self::CORE_MODULES_SCOPE:
+                $path = $fileManagerService->getCoreModulesFolder();
+                break;
+            case self::CUSTOM_MODULES_SCOPE:
+                $path = $fileManagerService->getCustomModulesFolder();
+                break;
+        }
+
+        $path .= $moduleName . self::MODULE_CONFIG_FOLDER . self::MODULE_CONFIG;
+        $moduleConfig = include $path;
+
+        return $moduleConfig['enable'];
+    }
+
+    public function getModuleConfigs($moduleName, $scope = self::CORE_MODULES_SCOPE)
+    {
+        $fileManagerService = $this->di->get('file_manager');
+
+        switch ($scope) {
+            case self::CORE_MODULES_SCOPE:
+                $path = $fileManagerService->getCoreModulesFolder();
+                break;
+            case self::CUSTOM_MODULES_SCOPE:
+                $path = $fileManagerService->getCustomModulesFolder();
+                break;
+        }
+
+        $path .= $moduleName . self::MODULE_CONFIG_FOLDER;
+
+        return [
+            str_replace('.php', '', self::MODULE_CONFIG)   => include $path . self::MODULE_CONFIG,
+            str_replace('.php', '', self::MODULE_EVENTS)   => include $path . self::MODULE_EVENTS,
+            str_replace('.php', '', self::MODULE_REWRITES) => include $path . self::MODULE_REWRITES,
+            str_replace('.php', '', self::MODULE_ROUTES)   => include $path . self::MODULE_ROUTES
+        ];
     }
 }
