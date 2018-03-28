@@ -49,7 +49,22 @@ final class Service extends \Framework\Service
             }
         }
 
-        // TODO: initialize events, rewrites
+        // initialize events
+        foreach ($this->modules as $scope => $scopeModules) {
+            foreach ($scopeModules as $moduleName => $configs) {
+                $events = $configs[str_replace('.php', '', $configService::MODULE_EVENTS)];
+
+                foreach ($events as $eventName => $observer) {
+                    if (!isset($this->events[$eventName])) {
+                        $this->events[$eventName] = [];
+                    }
+
+                    $this->events[$eventName][] = $observer;
+                }
+            }
+        }
+
+        // TODO: initialize rewrites
     }
 
     public function finish(DI $di)

@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Framework\ModuleManager;
 
 
 use Framework\DI;
 
-class CoreController
+abstract class CoreController
 {
     private $di;
 
@@ -17,6 +16,8 @@ class CoreController
         $this->di      = $di;
         $this->getData = $getData;
     }
+
+    abstract public function run();
 
     public function getRequestData()
     {

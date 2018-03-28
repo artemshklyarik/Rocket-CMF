@@ -27,10 +27,11 @@ final class Service extends \Framework\Service
 
         $controller = null;
 
-        // TODO: add pre dispatch controller event
-
         //trying to get controller by simple route
         $simpleUrl = implode('/', $uri);
+
+        //dispatch event
+        $eventManager->dispatchEvent('router_uri_process_before', $simpleUrl);
 
         if (!$simpleUrl) {
             $simpleUrl = 'index';
