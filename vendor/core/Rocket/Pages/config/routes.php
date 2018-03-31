@@ -5,5 +5,7 @@ return [
         'index'     => 'Core\Rocket\Pages\Controller\HomePageController',
         'page/{id}' => 'Core\Rocket\Pages\Controller\PageController'
     ],
-    'admin'    => []
+    'admin'    => [
+        'pages' => 'Core\Rocket\Pages\Controller\Admin\PagesController'
+    ]
 ];

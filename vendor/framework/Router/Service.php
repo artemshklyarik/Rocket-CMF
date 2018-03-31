@@ -22,6 +22,7 @@ final class Service extends \Framework\Service
         if (!$isAdmin) {
             $routes = $routes[self::FRONTEND_CONFIG_ROUTES];
         } else {
+            unset($uri[0]);
             $routes = $routes[self::ADMIN_CONFIG_ROUTE];
         }
 
