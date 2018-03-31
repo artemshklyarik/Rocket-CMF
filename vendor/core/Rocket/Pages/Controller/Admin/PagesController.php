@@ -8,8 +8,6 @@ class PagesController extends AdminController
 {
     public function run()
     {
-        echo '<pre>';
-        var_dump('Admin Pages Controller');
-        echo '</pre>';
+        $this->renderPage();
     }
 }

@@ -8,6 +8,10 @@ final class Service extends \Framework\Service
 {
     CONST CONFIG_FOLDER = 'app/config/';
 
+    CONST THEME_ADMIN_FOLDER = 'app/design/admin/';
+
+    CONST THEME_FRONTEND_FOLDER = 'app/design/frontend/';
+
     CONST ASSETS_FOLDER = 'assets/';
 
     CONST ASSETS_CSS_FOLDER = 'assets/css/';
@@ -53,6 +57,10 @@ final class Service extends \Framework\Service
                 return '/';
             case 'config':
                 return self::CONFIG_FOLDER;
+            case 'theme_admin_folder':
+                return self::THEME_ADMIN_FOLDER;
+            case 'theme_frontend_folder':
+                return self::THEME_FRONTEND_FOLDER;
             case 'assets':
                 return self::ASSETS_FOLDER;
             case 'assets_css':
