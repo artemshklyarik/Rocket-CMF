@@ -24,6 +24,7 @@ final class Service extends \Framework\Service
     CONST MODULE_EVENTS        = 'events.php';
     CONST MODULE_REWRITES      = 'rewrites.php';
     CONST MODULE_ROUTES        = 'routes.php';
+    CONST MODULE_ROUTERS       = 'routers.php';
     CONST CORE_MODULES_SCOPE   = 'core';
     CONST CUSTOM_MODULES_SCOPE = 'custom';
 
@@ -85,7 +86,8 @@ final class Service extends \Framework\Service
             self::MODULE_CONFIG,
             self::MODULE_EVENTS,
             self::MODULE_REWRITES,
-            self::MODULE_ROUTES
+            self::MODULE_ROUTES,
+            self::MODULE_ROUTERS
         ];
 
         $coreModulesConfigs   = $fileManagerService->scanDir($coreModulesFolder, $files);
@@ -158,11 +160,18 @@ final class Service extends \Framework\Service
 
         $path .= $moduleName . self::MODULE_CONFIG_FOLDER;
 
+        $moduleConfig   = include $path . self::MODULE_CONFIG;
+        $moduleEvents   = file_exists($path . self::MODULE_EVENTS) ? include $path . self::MODULE_EVENTS : null;
+        $moduleRewrites = file_exists($path . self::MODULE_REWRITES) ? include $path . self::MODULE_REWRITES : null;
+        $moduleRoutes   = file_exists($path . self::MODULE_ROUTES) ? include $path . self::MODULE_ROUTES : null;
+        $moduleRouters  = file_exists($path . self::MODULE_ROUTERS) ? include $path . self::MODULE_ROUTERS : null;
+
         return [
-            str_replace('.php', '', self::MODULE_CONFIG)   => include $path . self::MODULE_CONFIG,
-            str_replace('.php', '', self::MODULE_EVENTS)   => include $path . self::MODULE_EVENTS,
-            str_replace('.php', '', self::MODULE_REWRITES) => include $path . self::MODULE_REWRITES,
-            str_replace('.php', '', self::MODULE_ROUTES)   => include $path . self::MODULE_ROUTES
+            str_replace('.php', '', self::MODULE_CONFIG)   => $moduleConfig,
+            str_replace('.php', '', self::MODULE_EVENTS)   => $moduleEvents,
+            str_replace('.php', '', self::MODULE_REWRITES) => $moduleRewrites,
+            str_replace('.php', '', self::MODULE_ROUTES)   => $moduleRoutes,
+            str_replace('.php', '', self::MODULE_ROUTERS)  => $moduleRouters
         ];
     }
 }

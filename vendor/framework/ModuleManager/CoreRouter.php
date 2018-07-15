@@ -9,14 +9,20 @@ namespace Framework\ModuleManager;
 use Framework\DI;
 
 /**
- * Class CoreBlock
+ * Class CoreController
  * @package Framework\ModuleManager
  */
-abstract class CoreBlock
+abstract class CoreRouter
 {
     /**
-     * CoreBlock constructor.
+     * @var DI
+     */
+    private $di;
+
+    /**
+     * CoreController constructor.
      * @param DI $di
+     * @param null $getData
      */
     public function __construct(DI $di)
     {
@@ -32,7 +38,8 @@ abstract class CoreBlock
     }
 
     /**
-     * @return mixed
+     * @param $simpleUrl
+     * @return $simpleUrl
      */
-    abstract public function getData();
+    abstract public function run($simpleUrl);
 }

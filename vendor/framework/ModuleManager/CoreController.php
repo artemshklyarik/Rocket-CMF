@@ -65,12 +65,11 @@ abstract class CoreController
     }
 
     /**
-     * @param $name
-     * @param null $template
+     * @return DI
      */
-    protected function getBlock($name, $template = null)
+    public function getDi(): DI
     {
-        return;
+        return $this->di;
     }
 
     /**

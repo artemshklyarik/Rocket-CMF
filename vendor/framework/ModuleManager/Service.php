@@ -15,6 +15,11 @@ use Framework\DI;
 final class Service extends \Framework\Service
 {
     /**
+     * @var DI $di
+     */
+    protected $di;
+
+    /**
      * @var array
      */
     private $modules = [];
@@ -27,6 +32,11 @@ final class Service extends \Framework\Service
     /**
      * @var array
      */
+    private $routers = [];
+
+    /**
+     * @var array
+     */
     private $events = [];
 
     /**
@@ -35,14 +45,13 @@ final class Service extends \Framework\Service
     private $rewrites = [];
 
     /**
-     * @param DI $di
+     * Load enabled modules
      */
-    public function start(DI $di)
+    protected function loadModulesConfigs()
     {
-        $configService = $di->get('config');
+        $configService = $this->di->get('config');
         $modules       = $configService->getModulesConfigs();
 
-        //load enabled module's configs
         foreach ($modules as $scope => $scopeModules) {
             foreach ($scopeModules as $moduleName => $configs) {
                 if ($configService->isModuleEnabled($moduleName, $scope)) {
@@ -54,8 +63,16 @@ final class Service extends \Framework\Service
                 }
             }
         }
+    }
 
-        // initialize routes
+    /**
+     * Initialize Routes
+     */
+    protected function initializeRoutes()
+    {
+        $configService = $this->di->get('config');
+        $modules       = $configService->getModulesConfigs();
+
         foreach ($this->modules as $scope => $scopeModules) {
             foreach ($scopeModules as $moduleName => $configs) {
                 $moduleRoutes = $configs[str_replace('.php', '', $configService::MODULE_ROUTES)];
@@ -71,8 +88,34 @@ final class Service extends \Framework\Service
                 }
             }
         }
+    }
 
-        // initialize events
+    /**
+     * Initialize Routers
+     */
+    protected function initializeRouters()
+    {
+        $configService = $this->di->get('config');
+        $modules       = $configService->getModulesConfigs();
+
+        foreach ($this->modules as $scope => $scopeModules) {
+            foreach ($scopeModules as $moduleName => $configs) {
+                $moduleRouters = $configs[str_replace('.php', '', $configService::MODULE_ROUTERS)];
+                if ($moduleRouters) {
+                    $this->routers[$moduleRouters['sortOrder']][] = $moduleRouters['router'];
+                }
+            }
+        }
+    }
+
+    /**
+     * Initialize Events
+     */
+    protected function initializeEvents()
+    {
+        $configService = $this->di->get('config');
+        $modules       = $configService->getModulesConfigs();
+
         foreach ($this->modules as $scope => $scopeModules) {
             foreach ($scopeModules as $moduleName => $configs) {
                 $events = $configs[str_replace('.php', '', $configService::MODULE_EVENTS)];
@@ -86,6 +129,26 @@ final class Service extends \Framework\Service
                 }
             }
         }
+    }
+
+    /**
+     * @param DI $di
+     */
+    public function start(DI $di)
+    {
+        $this->di = $di;
+
+        //load enabled module's configs
+        $this->loadModulesConfigs();
+
+        // initialize routes
+        $this->initializeRoutes();
+
+        // initialize routers
+        $this->initializeRouters();
+
+        // initialize events
+        $this->initializeEvents();
 
         // TODO: initialize rewrites
     }
@@ -112,6 +175,14 @@ final class Service extends \Framework\Service
     public function getRoutes()
     {
         return $this->routes;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRouters()
+    {
+        return $this->routers;
     }
 
     /**

@@ -41,7 +41,17 @@ final class Service extends \Framework\Service
         //trying to get controller by simple route
         $simpleUrl = implode('/', $uri);
 
-        // @TODO: CREATE CUSTOM ROUTES FUNCTIONALITY
+        // Routers. Works only for front view
+        if (!$isAdmin) {
+            $allRouters = $di->get('module_manager')->getRouters();
+
+            foreach ($allRouters as $sortOrder => $routers) {
+                foreach ($routers as $routerPath) {
+                    $router = new $routerPath($di);
+                    $simpleUrl = $router->run($simpleUrl);
+                }
+            }
+        }
 
         if (!$simpleUrl) {
             $simpleUrl = 'index';
