@@ -1,19 +1,42 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\ModuleManager;
 
 use Framework\DI;
 
+/**
+ * Class Service
+ * @package Framework\ModuleManager
+ */
 final class Service extends \Framework\Service
 {
+    /**
+     * @var array
+     */
     private $modules = [];
 
+    /**
+     * @var array
+     */
     private $routes = [];
 
+    /**
+     * @var array
+     */
     private $events = [];
 
+    /**
+     * @var array
+     */
     private $rewrites = [];
 
+    /**
+     * @param DI $di
+     */
     public function start(DI $di)
     {
         $configService = $di->get('config');
@@ -67,26 +90,41 @@ final class Service extends \Framework\Service
         // TODO: initialize rewrites
     }
 
+    /**
+     * @param DI $di
+     */
     public function finish(DI $di)
     {
         return;
     }
 
+    /**
+     * @return array
+     */
     public function getModules()
     {
         return $this->modules;
     }
 
+    /**
+     * @return array
+     */
     public function getRoutes()
     {
         return $this->routes;
     }
 
+    /**
+     * @return array
+     */
     public function getEvents()
     {
         return $this->events;
     }
 
+    /**
+     * @return array
+     */
     public function getRewrites()
     {
         return $this->rewrites;

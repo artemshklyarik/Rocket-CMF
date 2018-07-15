@@ -1,23 +1,31 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\Http;
 
 use Framework\DI;
 
+/**
+ * Class Service
+ * @package Framework\Http
+ */
 final class Service extends \Framework\Service
 {
     /**
-     * @var
+     * @var string
      */
     private $host;
 
     /**
-     * @var
+     * @var array
      */
     private $uri;
 
     /**
-     * @var
+     * @var boolean
      */
     private $https;
 
@@ -87,6 +95,9 @@ final class Service extends \Framework\Service
         $this->uri = $uri;
     }
 
+    /**
+     * @return bool
+     */
     public function isAdmin()
     {
         $generalConfig = $this->di->get('config')->getGeneralConfig();

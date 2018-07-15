@@ -1,15 +1,25 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\Router;
 
 use Framework\DI;
 
+/**
+ * Class Service
+ * @package Framework\Router
+ */
 final class Service extends \Framework\Service
 {
     const FRONTEND_CONFIG_ROUTES = 'frontend';
-
     const ADMIN_CONFIG_ROUTE     = 'admin';
 
+    /**
+     * @param DI $di
+     */
     public function start(DI $di)
     {
         $moduleManager = $di->get('module_manager');
@@ -31,8 +41,7 @@ final class Service extends \Framework\Service
         //trying to get controller by simple route
         $simpleUrl = implode('/', $uri);
 
-        //dispatch event
-        $eventManager->dispatchEvent('router_uri_process_before', $simpleUrl);
+        // @TODO: CREATE CUSTOM ROUTES FUNCTIONALITY
 
         if (!$simpleUrl) {
             $simpleUrl = 'index';

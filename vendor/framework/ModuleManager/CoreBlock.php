@@ -4,27 +4,27 @@
  * Github: https://github.com/artemshklyarik
  */
 
-namespace Framework\EventManager;
+namespace Framework\ModuleManager;
 
 use Framework\DI;
 
 /**
- * Class CoreObserver
- * @package Framework\EventManager
+ * Class CoreBlock
+ * @package Framework\ModuleManager
  */
-abstract class CoreObserver
+abstract class CoreBlock
 {
     /**
-     * @var DI
-     */
-    private $di;
-
-    /**
-     * CoreObserver constructor.
+     * CoreBlock constructor.
      * @param DI $di
      */
     public function __construct(DI $di)
     {
         $this->di = $di;
     }
+
+    /**
+     * @return mixed
+     */
+    abstract public function getData();
 }

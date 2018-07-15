@@ -1,8 +1,15 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework;
 
-
+/**
+ * Class DI
+ * @package Framework
+ */
 class DI
 {
     /**

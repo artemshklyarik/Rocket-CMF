@@ -1,33 +1,45 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\Config;
 
 use Framework\DI;
 
+/**
+ * Class Service
+ * @package Framework\Config
+ */
 final class Service extends \Framework\Service
 {
+    /**
+     * String constants
+     */
     CONST GENERAL_CONFIG       = 'general.php';
-
     CONST DATABASE_CONFIG      = 'database.php';
-
     CONST MODULE_CONFIG_FOLDER = 'config/';
-
     CONST MODULE_CONFIG        = 'config.php';
-
     CONST MODULE_EVENTS        = 'events.php';
-
     CONST MODULE_REWRITES      = 'rewrites.php';
-
     CONST MODULE_ROUTES        = 'routes.php';
-
     CONST CORE_MODULES_SCOPE   = 'core';
-
     CONST CUSTOM_MODULES_SCOPE = 'custom';
 
+    /**
+     * @var array
+     */
     protected $generalConfig;
 
+    /**
+     * @var array
+     */
     protected $databaseConfig;
 
+    /**
+     * @param DI $di
+     */
     public function start(DI $di)
     {
         $configFolder         = $di->get('file_manager')->getFolderPath('config');
@@ -35,21 +47,34 @@ final class Service extends \Framework\Service
         $this->databaseConfig = include $configFolder . self::DATABASE_CONFIG;
     }
 
+    /**
+     * @param DI $di
+     */
     public function finish(DI $di)
     {
         return;
     }
 
+    /**
+     * @return array
+     */
     public function getGeneralConfig()
     {
         return $this->generalConfig;
     }
 
+    /**
+     * @return array
+     */
     public function getDatabaseConfig()
     {
         return $this->databaseConfig;
     }
 
+    /**
+     * Get all modules configs
+     * @return array
+     */
     public function getModulesConfigs()
     {
         $fileManagerService   = $this->di->get('file_manager');
@@ -85,6 +110,13 @@ final class Service extends \Framework\Service
         return $modulesConfigs;
     }
 
+    /**
+     * Check if module enabled
+     *
+     * @param $moduleName
+     * @param string $scope
+     * @return mixed
+     */
     public function isModuleEnabled($moduleName, $scope = self::CORE_MODULES_SCOPE)
     {
         $fileManagerService = $this->di->get('file_manager');
@@ -104,6 +136,13 @@ final class Service extends \Framework\Service
         return $moduleConfig['enable'];
     }
 
+    /**
+     * Get module configs
+     *
+     * @param $moduleName
+     * @param string $scope
+     * @return array
+     */
     public function getModuleConfigs($moduleName, $scope = self::CORE_MODULES_SCOPE)
     {
         $fileManagerService = $this->di->get('file_manager');

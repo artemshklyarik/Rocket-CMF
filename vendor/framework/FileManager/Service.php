@@ -1,33 +1,31 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\FileManager;
 
 use Framework\DI;
 
+/**
+ * Class Service
+ * @package Framework\FileManager
+ */
 final class Service extends \Framework\Service
 {
     CONST CONFIG_FOLDER = 'app/config/';
-
     CONST THEME_ADMIN_FOLDER = 'app/design/admin/';
-
     CONST THEME_FRONTEND_FOLDER = 'app/design/frontend/';
-
     CONST ASSETS_FOLDER = 'assets/';
-
     CONST ASSETS_CSS_FOLDER = 'assets/css/';
-
     CONST ASSETS_JS_FOLDER = 'assets/js/';
-
     CONST ASSETS_IMG_FOLDER = 'assets/img/';
-
     CONST MEDIA_FOLDER = 'media/';
-
     CONST VAR_FOLDER = 'var/';
-
     CONST VAR_LOGS_FOLDER = 'var/logs/';
-
+    CONST VAR_CACHE_FOLDER = 'var/cache/';
     CONST CORE_MODULES_FOLDER = 'vendor/core/';
-
     CONST CUSTOM_MODULES_FOLDER = 'app/modules/';
 
     /**
@@ -75,6 +73,8 @@ final class Service extends \Framework\Service
                 return self::VAR_FOLDER;
             case 'log':
                 return self::VAR_LOGS_FOLDER;
+            case 'cache':
+                return self::VAR_CACHE_FOLDER;
             default:
                 return false;
         }

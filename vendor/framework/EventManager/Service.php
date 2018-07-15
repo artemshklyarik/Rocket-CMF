@@ -1,9 +1,17 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\EventManager;
 
 use Framework\DI;
 
+/**
+ * Class Service
+ * @package Framework\EventManager
+ */
 final class Service extends \Framework\Service
 {
     /**
@@ -14,6 +22,10 @@ final class Service extends \Framework\Service
         return;
     }
 
+    /**
+     * @param $name
+     * @param array ...$data
+     */
     public function dispatchEvent($name, &...$data)
     {
         $moduleManager = $this->di->get('module_manager');

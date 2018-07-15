@@ -1,57 +1,84 @@
 <?php
+/**
+ * ROCKET CMS 2018, ARTEM SHKLYARIK
+ * Github: https://github.com/artemshklyarik
+ */
 
 namespace Framework\ModuleManager;
 
-
 use Framework\DI;
 
+/**
+ * Class CoreController
+ * @package Framework\ModuleManager
+ */
 abstract class CoreController
 {
+    /**
+     * @var DI
+     */
     private $di;
 
+    /**
+     * @var null
+     */
     private $getData;
 
+    /**
+     * @var string
+     */
     protected $theme = 'basic';
 
+    /**
+     * @var string
+     */
     protected $layout;
 
+    /**
+     * @var boolean
+     */
     protected $isAdmin;
 
+    /**
+     * CoreController constructor.
+     * @param DI $di
+     * @param null $getData
+     */
     public function __construct(DI $di, $getData = null)
     {
         $this->di      = $di;
         $this->getData = $getData;
-        $this->isAdmin = $di->get('http')->isAdmin();;
+        $this->isAdmin = $di->get('http')->isAdmin();
     }
 
+    /**
+     * @return mixed
+     */
     abstract public function run();
 
+    /**
+     * @return null
+     */
     public function getRequestData()
     {
         return $this->getData;
     }
 
+    /**
+     * @param $name
+     * @param null $template
+     */
     protected function getBlock($name, $template = null)
     {
         return;
     }
 
+    /**
+     * Render page
+     */
     protected function renderPage()
     {
-        $fileManager = $this->di->get('file_manager');
-
-        if ($this->isAdmin) {
-            $themeFolder = $fileManager->getFolderPath('theme_admin_folder') . $this->theme;
-        } else {
-            $themeFolder = $fileManager->getFolderPath('theme_frontend_folder') . $this->theme;
-        }
-
-        $pageTemplate = $themeFolder . '/templates/page.php';
-
-        if (file_exists($pageTemplate)) {
-            include $pageTemplate;
-        } else {
-            exit('Theme is corrupted');
-        }
+        $templatesManager = $this->di->get('templates_manager');
+        $templatesManager->renderTemplate();
     }
 }
